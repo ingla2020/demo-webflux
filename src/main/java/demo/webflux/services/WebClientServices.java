@@ -23,9 +23,14 @@ import reactor.core.scheduler.Schedulers;
 @Service
 public class WebClientServices implements IWebClientServices{
 
-	@Autowired
-	public IwebRest iwebRest;
+	IwebRest iwebRest;
 	
+
+	public WebClientServices(IwebRest iwebRest) {
+		this.iwebRest = iwebRest;
+	}
+
+
 	@Override
 	public Mono<UserResult> WebResult(Integer id) {
 		

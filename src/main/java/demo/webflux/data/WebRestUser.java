@@ -11,12 +11,16 @@ import reactor.core.publisher.Mono;
 @Repository
 public class WebRestUser implements IwebRest{
 
-	@Autowired
 	public WebClient webclient;
+
+	UriWebRest uriWebRest;	
 	
-	@Autowired
-	UriWebRest uriWebRest;
-	
+	public WebRestUser(WebClient webclientx, UriWebRest uriWebRest) {
+		this.uriWebRest = uriWebRest;
+		this.webclient = webclientx;
+	}
+
+
 	@Override
 	public Mono<UserResponse> UserRest(Integer id) {
 		
@@ -27,7 +31,8 @@ public class WebRestUser implements IwebRest{
 				.uri(uriWebRest.getEndPoint(id))
 				.retrieve()
 				.onStatus(HttpStatus::isError, clientResponse -> {
-
+					
+			
                     throw new RuntimeException(
                             "Error while calling  accounts endpoint");
 				})
