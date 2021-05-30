@@ -24,7 +24,16 @@ public class UriWebRest {
     @Value("${rest.url}")
     public String endPoint;
 
-    public String getEndPoint(Integer id) {
+
+    public UriWebRest(String domainSchame, String servDomainIp, String servDomainPort, String endPoint) {
+		this.domainSchame = domainSchame;
+		this.servDomainIp = servDomainIp;
+		this.servDomainPort = servDomainPort;
+		this.endPoint = endPoint;
+	}
+
+
+	public String getEndPoint(Integer id) {
 
        // Map<String, String> urlParams = new HashMap<>();
        // urlParams.put("page", id.toString());
